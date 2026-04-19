@@ -21,7 +21,7 @@
             font-family: "Microsoft JhengHei", sans-serif;
         }
 
-        /* 動態深色背景 - 保留流動感 */
+        /* 動態深色背景 */
         .background {
             position: fixed;
             top: 0;
@@ -43,40 +43,73 @@
         /* 內容容器 */
         .container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             width: 100vw;
+            padding: 20px;
         }
 
-        /* Logo 樣式 - 只做一次滑入並淡入，之後固定 */
+        /* Logo 樣式 - 調小一點點 */
         .logo {
-            max-width: 300px; /* 這裡可以調整 Logo 的大小 */
-            width: 80%;
+            max-width: 220px; 
+            width: 60%;
             height: auto;
-            opacity: 0; /* 初始狀態為透明 */
-            transform: translateY(30px); /* 初始狀態向下偏移 */
-            /* 動畫名稱: slideFadeIn
-               持續時間: 1.5s
-               計時函數: ease-out (由快變慢)
-               填充模式: forwards (動畫結束後保留在最後一個狀態)
-            */
-            animation: slideFadeIn 1.5s ease-out forwards;
-            filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.3)); /* 強化 Logo 光暈 */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideFadeIn 1.2s ease-out forwards;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+            margin-bottom: 40px; /* 與按鈕的間距 */
         }
 
         @keyframes slideFadeIn {
             0% {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             100% {
-                opacity: 1; /* 最終狀態完全透明 */
-                transform: translateY(0); /* 最終狀態回歸原位 */
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* 電競質感微光掃描線 - 保留 */
+        /* 按鈕容器 */
+        .button-group {
+            display: flex;
+            gap: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.8s forwards; /* 延遲出現增加層次感 */
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* 電競風按鈕樣式 */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #ffffff;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px);
+        }
+
+        /* 掃描線特效 */
         .scanline {
             width: 100%;
             height: 100px;
@@ -92,6 +125,18 @@
             0% { bottom: 100%; }
             100% { bottom: -100%; }
         }
+
+        /* 手機版適應 */
+        @media (max-width: 480px) {
+            .button-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .btn {
+                text-align: center;
+                min-width: 200px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -101,6 +146,11 @@
 
     <div class="container">
         <img src="https://cdn.hsuddfps.com/LaopIcon_W.png" alt="皮皮盃 Logo" class="logo">
+
+        <div class="button-group">
+            <a href="http://laop-season3.milotw.com/competition_rulebook.html" class="btn">賽事規章本</a>
+            <a href="http://laop-season3.milotw.com/schedule.html" class="btn">賽事時程表</a>
+        </div>
     </div>
 
 </body>
